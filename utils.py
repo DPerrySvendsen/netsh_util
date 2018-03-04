@@ -1,4 +1,4 @@
-from subprocess import call
+from subprocess import call, check_output, CalledProcessError
 from msvcrt     import getch
 
 # ---
@@ -9,6 +9,7 @@ CONTROL_CHAR = b'\xe0'
 # ---
 
 class ConsoleColour:
+
   RED        = '\033[91m'
   GREEN      = '\033[92m'
   YELLOW     = '\033[93m'
@@ -22,6 +23,32 @@ class ConsoleColour:
 def cls ():
 
   call('cls', shell = True)
+
+# ---
+
+def try_call (command):
+
+  result = {
+    'Success' : True,
+    'Output'  : ''
+  }
+
+  try:
+    result['Output'] = check_output(command)
+  except CalledProcessError as ex:
+    result['Success'] = False
+    result['Output']  = str(ex.output).replace('\\r', '').replace('\\n', '')[2:-1]
+
+  return result
+
+# ---
+
+def confirm (message):
+
+  input_value = ''
+  while input_value not in ['Y', 'N']:
+    input_value = input(message + ' [Y/N]: ').upper().strip()
+  return input_value == 'Y'
 
 # ---
 

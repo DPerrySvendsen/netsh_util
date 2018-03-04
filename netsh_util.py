@@ -1,6 +1,11 @@
-from argparse       import ArgumentParser
-from module_connect import display_connection_status
-from module_scanner import WifiScanner
+from argparse        import ArgumentParser
+from module_scanner  import WifiScanner
+from module_connect  import display_connection_status, \
+                            connect_to_network, \
+                            disconnect_from_network
+from module_profiles import list_all_profiles, \
+                            display_profile, \
+                            delete_profile
 
 parser = ArgumentParser(
   prog        = 'netsh_util',
@@ -14,29 +19,30 @@ group.add_argument('-c', '--connect',      metavar = 'SSID',       help = 'conne
 group.add_argument('-d', '--disconnect',   action  = 'store_true', help = 'disconnect from the current wireless network')
 group.add_argument('-l', '--listprofiles', action  = 'store_true', help = 'list all stored profiles')
 group.add_argument('-p', '--profile',      metavar = 'name',       help = 'display the contents of the specified profile')
-group.add_argument('-D', '--delete',       action  = 'store_true', help = 'delete a stored profile')
+group.add_argument('-D', '--delete',       metavar = 'name',       help = 'delete a stored profile')
 
 args = vars(parser.parse_args())
 
 if args['status']:
   display_connection_status()
-  pass
 
 elif args['scan']:
   WifiScanner().run()
-  pass
 
 elif args['connect']:
-  pass
+  connect_to_network(args['connect'])
 
 elif args['disconnect']:
-  pass
+  disconnect_from_network()
 
 elif args['listprofiles']:
-  pass
+  list_all_profiles()
 
 elif args['profile']:
-  pass
+  display_profile(args['profile'])
 
 elif args['delete']:
-  pass
+  delete_profile(args['delete'])
+
+else:
+  parser.print_help()

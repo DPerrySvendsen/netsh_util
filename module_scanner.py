@@ -13,6 +13,7 @@ class WifiScanner:
   # ---
 
   def update_network_list(self):
+
     # Refresh the list of nearby networks
     for BSSID, network in get_network_list().items():
       self.networks[BSSID] = network
