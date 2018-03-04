@@ -1,7 +1,6 @@
-from argparse import ArgumentParser
+from argparse       import ArgumentParser
 from module_connect import display_connection_status
-
-NL = '\n'
+from module_scanner import WifiScanner
 
 parser = ArgumentParser(
   prog        = 'netsh_util',
@@ -24,6 +23,7 @@ if args['status']:
   pass
 
 elif args['scan']:
+  WifiScanner().run()
   pass
 
 elif args['connect']:
