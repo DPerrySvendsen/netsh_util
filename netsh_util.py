@@ -1,8 +1,9 @@
-import argparse
+from argparse import ArgumentParser
+from module_connect import display_connection_status
 
 NL = '\n'
 
-parser = argparse.ArgumentParser(
+parser = ArgumentParser(
   prog        = 'netsh_util',
   description = 'Network Shell Utility: Used to manage wireless network connections.'
 )
@@ -19,6 +20,7 @@ group.add_argument('-D', '--delete',       action  = 'store_true', help = 'delet
 args = vars(parser.parse_args())
 
 if args['status']:
+  display_connection_status()
   pass
 
 elif args['scan']:
