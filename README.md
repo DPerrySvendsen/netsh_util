@@ -2,6 +2,8 @@
 
 Network Shell Utility (netsh_util) is a Python tool intended to make it easier to manage wireless network connections from the Windows command line. It can be used to scan for and connect to nearby networks, as well as view and manage saved profiles.
 
+This project is a work in progress. Feel free to try it out, but be aware it won't always work as intended.
+
 ```
 usage: netsh_util [-h] [-s | -S | -c SSID | -d | -l | -p name | -D name]
 
