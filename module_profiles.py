@@ -126,7 +126,7 @@ def generate_profile (network):
     if network.authentication[3] == '2':
       authentication = 'WPA2PSK'
     else:
-      authentication = 'WPA'
+      authentication = 'WPAPSK'
 
     if network.encryption == 'TKIP':
       encryption = 'TKIP'
